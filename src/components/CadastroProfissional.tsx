@@ -4,7 +4,7 @@ import Footer from './FooterServico';
 import styles from '../App.module.css'
 import axios from 'axios';
 
-const cadastroProfissional = () => {
+const CadastroProfissional = () => {
 
     const [nome, setNome] = useState<string>("");
     const [celular, setCelular] = useState<string>("");
@@ -200,7 +200,7 @@ const cadastroProfissional = () => {
 
                             <div className='col-6'>
                                 <label htmlFor="senha" className='form-label'>Senha</label>
-                                <input type="text" name='senha' className='form-control' required onChange={handleState}/>
+                                <input type="password   " name='senha' className='form-control' required onChange={handleState}/>
                             </div>
                             <div className='col-6'>
                                 <label htmlFor="salario" className='form-label'>Salario</label>
@@ -229,4 +229,4 @@ const cadastroProfissional = () => {
     );
 }
 
-export default cadastroProfissional;
+export default CadastroProfissional;

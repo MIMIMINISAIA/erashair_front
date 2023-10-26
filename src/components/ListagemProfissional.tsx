@@ -3,9 +3,9 @@ import styles from "../App.module.css"
 import { CadastroProfissionalInterfaces } from '../interfaces/CadastroProfissionalInterfaces';
 import axios from 'axios';
 
-const listagemprofissionals = () => {
+const Listagemprofissionals = () => {
 
-    const [profissionals, setprofissionals] = useState<CadastroProfissionalInterfaces[]>([]);
+    const [profissionals, setProfissionals] = useState<CadastroProfissionalInterfaces[]>([]);
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
 
@@ -28,7 +28,7 @@ const listagemprofissionals = () => {
                         "content-Type":"aplication/json"
                     }
                 }).then(function(response){
-                    setprofissionals(response.data.data);
+                    setProfissionals(response.data.data);
                 }).catch(function(error){
                     console.log(error);
                 });
@@ -43,7 +43,7 @@ const listagemprofissionals = () => {
         async function fetchData(){
             try{
                 const response = await axios.get('http://127.0.0.1:8000/api/profissional/retornarTodos');
-                setprofissionals(response.data.data);
+                setProfissionals(response.data.data);
                 
 
             }catch(error){
@@ -143,4 +143,4 @@ const listagemprofissionals = () => {
     );
 }
 
-export default listagemprofissionals;
+export default Listagemprofissionals;
