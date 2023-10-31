@@ -90,7 +90,7 @@ const Listagemprofissionals = () => {
                             <h5 className='card-title'>
                                 Listagem de Profissionais
                             </h5>
-                            <table className='table table-hover'>
+                            <table className='table table-hover table-bordered border-dark border border-success p-2 mb-2 border-opacity-25'>
                                 <thead>
                                     <tr>
                                         {/* <th>ID</th> */}

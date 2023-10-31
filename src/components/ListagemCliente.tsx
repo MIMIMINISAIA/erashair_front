@@ -84,10 +84,10 @@ const ListagemCliente = () => {
                             <h5 className='card-title'>
                                 Listagem de Clientes
                             </h5>
-                            <table className='table table-hover'>
+                            <table className='table table-hover table-bordered border-dark border border-success p-2 mb-2 border-opacity-25 '>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        {/* <th>ID</th> */}
                                         <th>Nome</th>
                                         <th>celular</th>
                                         <th>email</th>
@@ -95,13 +95,14 @@ const ListagemCliente = () => {
                                         <th>dataNascimento</th>
                                         <th>cidade</th>
                                         <th>estado</th>
-                                        <th>pais</th>
-                                        <th>rua</th>
-                                        <th>numero</th>
-                                        <th>bairro</th>
-                                        <th>cep</th>
-                                        <th>complememnto</th>
-                                        <th>senha</th>
+                                        {/* <th>pais</th> */}
+                                        {/* <th>rua</th> */}
+                                        {/* <th>numero</th> */}
+                                        {/* <th>bairro</th> */}
+                                        {/* <th>cep</th> */}
+                                        {/* <th>complememnto</th> */}
+                                        {/* <th>senha</th> */}
+                                        <th>Ações</th>
                                     </tr>
                                     
                                     
@@ -109,7 +110,7 @@ const ListagemCliente = () => {
                                 <tbody>
                                     {clientes.map(clientes =>(
                                     <tr key={clientes.id}>
-                                        <td>{clientes.id}</td>
+                                        {/* <td>{clientes.id}</td> */}
                                         <td>{clientes.nome}</td>
                                         <td>{clientes.celular}</td>
                                         <td>{clientes.email}</td>
@@ -117,13 +118,13 @@ const ListagemCliente = () => {
                                         <td>{clientes.dataNascimento}</td>
                                         <td>{clientes.cidade}</td>
                                         <td>{clientes.estado}</td>
-                                        <td>{clientes.pais}</td>
-                                        <td>{clientes.rua}</td>
-                                        <td>{clientes.numero}</td>
-                                        <td>{clientes.bairro}</td>
-                                        <td>{clientes.cep}</td>
-                                        <td>{clientes.complemento}</td>
-                                        <td>{clientes.senha}</td>
+                                        {/* <td>{clientes.pais}</td> */}
+                                        {/* <td>{clientes.rua}</td> */}
+                                        {/* <td>{clientes.numero}</td> */}
+                                        {/* <td>{clientes.bairro}</td> */}
+                                        {/* <td>{clientes.cep}</td> */}
+                                        {/* <td>{clientes.complemento}</td> */}
+                                        {/* <td>{clientes.senha}</td> */}
                                         <td>
                                             <a href="#" className='btn btn-primary btn-sm'>Editar</a>
                                             <a href="#" className='btn btn-danger btn-sm'>Excluir</a>

@@ -47,7 +47,7 @@ const CadastroCliente = () => {
             
         }
 
-        axios.post('http://127.0.0.1:8000/api/cadastro/', dados,
+        axios.post('http://127.0.0.1:8000/api/cadastro', dados,
         {
             headers:{
                 "Accept": "application/json",
@@ -194,9 +194,9 @@ const CadastroCliente = () => {
                             </div>
 
                             <div className='col-6'>
-                                <label htmlFor="senha" className='form-label'>Senha</label>
-                                <input type="passoword" name='senha' className='form-control' required onChange={handleState}/>
-                            </div>
+                                <label htmlFor="inputPassword5" className='form-label'>Senha</label>
+                                <input type="password" name='senha' id='inputPassword5' className='form-control' aria-describedby="passwordHelpBlock" required onChange={handleState}/>
+                            </div >
 
                             
                              <div className='col-12'>

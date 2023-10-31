@@ -200,11 +200,11 @@ const CadastroProfissional = () => {
 
                             <div className='col-6'>
                                 <label htmlFor="senha" className='form-label'>Senha</label>
-                                <input type="password   " name='senha' className='form-control' required onChange={handleState}/>
+                                <input type="password" name='senha' className='form-control' required onChange={handleState}/>
                             </div>
                             <div className='col-6'>
                                 <label htmlFor="salario" className='form-label'>Salario</label>
-                                <input type="text" name='salario' className='form-control' required onChange={handleState}/>
+                                <input type="text" name='salario' id='inputPassword5' className='form-control' aria-describedby="passwordHelpBlock" required onChange={handleState}/>
                             </div>
 
                             
