@@ -195,7 +195,7 @@ const CadastroCliente = () => {
 
                             <div className='col-6'>
                                 <label htmlFor="senha" className='form-label'>Senha</label>
-                                <input type="text" name='senha' className='form-control' required onChange={handleState}/>
+                                <input type="passoword" name='senha' className='form-control' required onChange={handleState}/>
                             </div>
 
                             
