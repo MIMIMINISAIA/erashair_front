@@ -36,10 +36,12 @@ const CadastroServico = () => {
             if(response.data.success == false){
                 console.log("Error");
                 console.log(response.data.error);
+                alert("erro ao cadastrar, olhar o console")
             }
             else{
-                window.location.href = "/listagemServico";
+                window.location.href = "/listagemCliente";
             }
+            
         }).catch(function(error){
             console.log(error);
         });

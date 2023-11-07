@@ -60,10 +60,12 @@ const CadastroProfissional = () => {
             if(response.data.success == false){
                 console.log("Error");
                 console.log(response.data.error);
+                alert("erro ao cadastrar, olhar o console")
             }
             else{
                 window.location.href = "/listagemProfissional";
             }
+            
         }).catch(function(error){
             console.log(error);
         });
@@ -155,7 +157,7 @@ const CadastroProfissional = () => {
 
                             <div className='col-6'>
                                 <label htmlFor="dataNascimento" className='form-label'>Data Nascimento</label>
-                                <input type="text" name='dataNascimento' className='form-control' required onChange={handleState}/>
+                                <input type="date" name='dataNascimento' className='form-control' required onChange={handleState}/>
                             </div>
 
                             <div className='col-6'>
