@@ -24,3 +24,10 @@ code .
 ```
 npm start
 ```
+
+6. abrir o projeto do ERAS
+```
+ git clone https://github.com/MIMIMINISAIA/ERAShair.git
+```
+
+7. executar os comandos que esta no readme do ERAS
