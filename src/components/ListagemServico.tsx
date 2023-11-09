@@ -2,6 +2,7 @@ import React, {Component, useState, ChangeEvent, FormEvent, useEffect}from 'reac
 import styles from "../App.module.css"
 import { CadastroServicoInterfaces } from '../interfaces/CadastroServicoInterfaces';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const ListagemServico = () => {
 
@@ -103,7 +104,7 @@ const ListagemServico = () => {
                                         <td>{servicos.duracao}</td>
                                         <td>{servicos.preco}</td>
                                         <td>
-                                            <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                            <Link to={"/editarServico/"+ servicos.id}  className='btn btn-primary btn-sm'>Editar</Link>
                                             <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                         </td>
                                     </tr>

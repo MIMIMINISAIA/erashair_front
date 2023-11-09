@@ -1,13 +1,13 @@
 import React, {Component, useState, ChangeEvent, FormEvent, useEffect} from "react";
 
 import styles from "../App.module.css"
-import Header from "./HeaderCliente";
-import Footer from "./FooterCliente";
+import Header from "./HeaderProfissional";
+import Footer from "./FooterProfissional";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
 
-const EditarClientes = () =>{
+const EditarProfissional = () =>{
 
     const[id, setId] = useState<string>("");
     const [nome, setNome] = useState<string>("");
@@ -24,6 +24,7 @@ const EditarClientes = () =>{
     const [cep, setCep] = useState<string>("");
     const [complemento, setComplemento] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
+    const [salario, setSalario] = useState<string>("");
 
     const parametro = useParams();
 
@@ -48,7 +49,7 @@ const EditarClientes = () =>{
             senha: senha,
         }
 
-        axios.put("http://127.0.0.1:8000/api/atualizar", dados,
+        axios.put("http://127.0.0.1:8000/api/atualizarProfissional/", dados,
         {
             headers: {
                 "Accept": "application/json",
@@ -58,10 +59,10 @@ const EditarClientes = () =>{
             if(response.data.success == false){
                 console.log("Error");
                 console.log(response.data.error);
-                alert("erro ao cadastrar, olhar o console")
+                alert("erro ao Editar, olhar o console")
             }
             else{
-                window.location.href = "/listagemCliente";
+                window.location.href = "/listagemProfissional";
             }
             
         }).catch(function(error){
@@ -76,7 +77,7 @@ const EditarClientes = () =>{
     useEffect(()=>{
         async function fetchData(){
             try{
-                const response = await axios.get("http://127.0.0.1:8000/api/pesquisarPor/" + parametro.id)
+                const response = await axios.get("http://127.0.0.1:8000/api/profissionalPesquisarPor/" + parametro.id)
                 console.log(response)
                 setId(response.data.data.id);
                 setNome(response.data.data.nome);
@@ -93,6 +94,7 @@ const EditarClientes = () =>{
                 setCep(response.data.data.cep);
                 setComplemento(response.data.data.complememento);
                 setSenha(response.data.data.senha);
+                setSalario(response.data.data.salario);
 
             }catch(error){
                 console.log("erro ao buscar dados da api");
@@ -147,6 +149,9 @@ const EditarClientes = () =>{
         }
         if(e.target.name === "senha"){
             setSenha(e.target.value);
+        }
+        if(e.target.name === "salario"){
+            setSalario(e.target.value);
         }
 
 
@@ -231,6 +236,10 @@ const EditarClientes = () =>{
                                 <label htmlFor="inputPassword5" className='form-label'>Senha</label>
                                 <input type="password" name='senha' id='inputPassword5' className='form-control' aria-describedby="passwordHelpBlock" required onChange={handleState} value={senha}/>
                             </div >
+                            <div className='col-6'>
+                                <label htmlFor="salario" className='form-label'>Salario</label>
+                                <input type="text" name='salario' className='form-control' required onChange={handleState} value={salario}/>
+                            </div>
 
 
 
@@ -255,4 +264,4 @@ const EditarClientes = () =>{
     )
 }
 
-export default EditarClientes;
+export default EditarProfissional;

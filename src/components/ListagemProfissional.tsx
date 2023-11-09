@@ -4,6 +4,7 @@ import { CadastroProfissionalInterfaces } from '../interfaces/CadastroProfission
 import axios from 'axios';
 import Header from './HeaderProfissional';
 import Footer from './FooterProfissional';
+import { Link } from 'react-router-dom';
 
 
 const Listagemprofissionals = () => {
@@ -132,7 +133,7 @@ const Listagemprofissionals = () => {
                                         {/* <td>{profissionals.complemento}</td> */}
                                         {/* <td>{profissionals.senha}</td> */}
                                         <td>
-                                            <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                        <Link to={"/editarProfissional/"+ profissionals.id}  className='btn btn-primary btn-sm'>Editar</Link>
                                             <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                         </td>
                                     </tr>

@@ -1,42 +1,44 @@
-import React, {Component, useState, ChangeEvent, FormEvent, useEffect}from 'react';
-import Header from './HeaderServico';
-import Footer from './FooterServico';
-import styles from '../App.module.css'
-import axios from 'axios';
+import React, {Component, useState, ChangeEvent, FormEvent, useEffect} from "react";
 
-const CadastroServico = () => {
+import styles from "../App.module.css"
+import Header from "./HeaderServico";
+import Footer from "./FooterServico";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
+
+const EditarServico = () =>{
+
+    const [id, setId] = useState<string>("");
     const [nome, setNome] = useState<string>("");
     const [descricao, setDescricao] = useState<string>("");
     const [duracao, setDuracao] = useState<string>();
     const [preco, setPreco] = useState<string>();
 
-    
+    const parametro = useParams();
 
-    const CadastroServico = (e: FormEvent) => {
-
+    const Atualizar = (e: FormEvent) => {
         e.preventDefault();
 
-        const dados ={
+        const dados = {
+            id: id,
             nome: nome,
             descricao: descricao,
             duracao: duracao,
             preco: preco,
-            
         }
 
-        axios.post('http://127.0.0.1:8000/api/store', dados,
+        axios.put("http://127.0.0.1:8000/api/update/", dados,
         {
-            headers:{
+            headers: {
                 "Accept": "application/json",
-                "Content-Type": "application/json"
+                "Content-Type":"application/json"
             }
-
         }).then(function(response){
             if(response.data.success == false){
                 console.log("Error");
                 console.log(response.data.error);
-                alert("erro ao cadastrar, olhar o console")
+                alert("erro ao Editar, olhar o console")
             }
             else{
                 window.location.href = "/listagemServico";
@@ -45,7 +47,34 @@ const CadastroServico = () => {
         }).catch(function(error){
             console.log(error);
         });
+
+
+
+
     }
+
+    useEffect(()=>{
+        async function fetchData(){
+            try{
+                const response = await axios.get("http://127.0.0.1:8000/api/servicoPesquisarPor/" + parametro.id)
+                console.log(response)
+                setId(response.data.data.id);
+                setNome(response.data.data.nome);
+                setDescricao(response.data.data.descricao);
+                setDuracao(response.data.data.duracao);
+                setPreco(response.data.data.preco);
+
+
+            }catch(error){
+                console.log("erro ao buscar dados da api");
+                console.log(error);
+
+            }
+        }
+        fetchData();
+
+    }, []);
+
 
     const handleState = (e: ChangeEvent<HTMLInputElement>)=>{
         if(e.target.name === "nome"){
@@ -60,50 +89,47 @@ const CadastroServico = () => {
         if(e.target.name === "preco"){
             setPreco(e.target.value);
         }
-       
+
+
     }
-    
-      
-
-
-    return(
+    return (
         <div>
-           <Header />
+        <Header />
            <main className={styles.main}>
             <div className='container'>
                 <div className='card'>
                     <div className='card-body'>
-                        <h5 className='card-title'>Cadastrar Serviços</h5>
-                        <form onSubmit={CadastroServico} className='row g-3'>
-                            
-                            <div className='col-6'>
+                        <h5 className='card-title'>Editar Serviço</h5>
+                        <form onSubmit={Atualizar} className='row g-3'>
+
+                        <div className='col-6'>
                                 <label htmlFor="nome" className='form-label'>Nome</label>
-                                <input type="text" name='nome' className='form-control' required onChange={handleState} />
+                                <input type="text" name='nome' className='form-control' required onChange={handleState} value={nome} />
                             </div>
 
                             <div className='col-6'>
                                 <label htmlFor="descricao" className='form-label'>Descrição</label>
-                                <input type="text" name='descricao' className='form-control' required onChange={handleState} />
+                                <input type="text" name='descricao' className='form-control' required onChange={handleState} value={descricao}/>
                             </div>
 
                              
                             <div className='col-6'>
                                 <label htmlFor="duracao" className='form-label'>Duração</label>
-                                <input type="text" name='duracao' className='form-control' required onChange={handleState}/>
+                                <input type="text" name='duracao' className='form-control' required onChange={handleState} value={duracao}/>
                             </div>
 
                             <div className='col-6'>
                                 <label htmlFor="preco" className='form-label'>Preço</label>
-                                <input type="text" name='preco' className='form-control' required onChange={handleState}/>
+                                <input type="text" name='preco' className='form-control' required onChange={handleState} value={preco}/>
                             </div>
 
-                            
+
                              <div className='col-12'>
-                                    <button type='submit' className=' btn btn-success btn-sm'>Cadastrar</button>
+                                    <button type='submit' className=' btn btn-success btn-sm'>Atualizar</button>
                                 </div>
-                             
-                             
-                            
+
+
+
                         </form>
 
                     </div>
@@ -116,7 +142,7 @@ const CadastroServico = () => {
 
            <Footer/>
         </div>
-    );
+    )
 }
 
-export default CadastroServico;
+export default EditarServico;
