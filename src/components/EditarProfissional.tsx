@@ -163,7 +163,7 @@ const EditarProfissional = () =>{
             <div className='container'>
                 <div className='card'>
                     <div className='card-body'>
-                        <h5 className='card-title'>Cadastrar Cliente</h5>
+                        <h5 className='card-title'>Editar Profissional</h5>
                         <form onSubmit={Atualizar} className='row g-3'>
 
                         <div className='col-6'>

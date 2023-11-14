@@ -222,4 +222,13 @@ const CadastroCliente = () => {
     );
 }
 
+
+
+
+
 export default CadastroCliente;
+
+
+
+
+
