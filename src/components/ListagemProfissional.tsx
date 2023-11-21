@@ -31,17 +31,24 @@ const Listagemprofissionals = () => {
                         "Accept":"application/json",
                         "content-Type":"aplication/json"
                     }
-                }).then(function(response){
-                    setProfissionals(response.data.data);
-                }).catch(function(error){
+                }).then(function (response) {
+                    console.log(response);
+                    if (response.data.status == true) {
+                        setProfissionals(response.data.data);
+                    }
+                    else {
+                        setProfissionals([]);
+                    }
+
+                }).catch(function (error) {
                     console.log(error);
                 });
 
-            }catch(error){
-                console.log(error);
-            }
+        } catch (error) {
+            console.log(error);
         }
-        fetchData();
+    }
+    fetchData();
     }
     useEffect(() =>{
         async function fetchData(){
@@ -135,6 +142,7 @@ const Listagemprofissionals = () => {
                                         <td>
                                         <Link to={"/editarProfissional/"+ profissionals.id}  className='btn btn-primary btn-sm'>Editar</Link>
                                             <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                            <Link to={"/recuperarSenhaProfissional" } className='btn btn-warning btn-sm'>Recuperar Senha</Link>
                                         </td>
                                     </tr>
                                     ))}

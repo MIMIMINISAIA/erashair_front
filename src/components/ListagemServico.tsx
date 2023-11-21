@@ -28,17 +28,24 @@ const ListagemServico = () => {
                         "Accept":"application/json",
                         "content-Type":"aplication/json"
                     }
-                }).then(function(response){
-                    setServicos(response.data.data);
-                }).catch(function(error){
+                }).then(function (response) {
+                    console.log(response);
+                    if (response.data.status == true) {
+                        setServicos(response.data.data);
+                    }
+                    else {
+                        setServicos([]);
+                    }
+
+                }).catch(function (error) {
                     console.log(error);
                 });
 
-            }catch(error){
-                console.log(error);
-            }
+        } catch (error) {
+            console.log(error);
         }
-        fetchData();
+    }
+    fetchData();
     }
     useEffect(() =>{
         async function fetchData(){

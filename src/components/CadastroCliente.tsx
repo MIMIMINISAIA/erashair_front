@@ -115,6 +115,30 @@ const CadastroCliente = () => {
        
        
     }
+
+    const findCep = (e: FormEvent) => {
+        e.preventDefault();
+        console.log(cep)
+        fetch('https://viacep.com.br/ws/'+cep+'/json/',
+        {
+            method: 'GET'
+        }).then(response => response.json())
+        .then(
+            data => {
+                setCidade(data.localidade);
+                //setCep(data.cep);
+                setRua(data.logradouro);
+                setBairro(data.bairro);
+
+
+                setEstado(data.uf);       
+            }
+        ).catch(function(error){
+            console.log(error);
+        });
+        
+    }
+
     
       
 
@@ -156,13 +180,18 @@ const CadastroCliente = () => {
                             </div>
 
                             <div className='col-6'>
+                                <label htmlFor="cep" className='form-label'>CEP</label>
+                                <input type="text" name='cep' className='form-control' required onChange={handleState} onBlur={findCep}/>
+                            </div>
+
+                            <div className='col-6'>
                                 <label htmlFor="cidade" className='form-label'>Cidade</label>
-                                <input type="text" name='cidade' className='form-control' required onChange={handleState}/>
+                                <input type="text" name='cidade' className='form-control' required onChange={handleState} value={cidade}/>
                             </div>
 
                             <div className='col-6'>
                                 <label htmlFor="estado" className='form-label'>Estado</label>
-                                <input type="text" name='estado' className='form-control' required onChange={handleState}/>
+                                <input type="text" name='estado' className='form-control' required onChange={handleState} value={estado}/>
                             </div>
 
                             <div className='col-6'>
@@ -172,7 +201,7 @@ const CadastroCliente = () => {
 
                             <div className='col-6'>
                                 <label htmlFor="rua" className='form-label'>Rua</label>
-                                <input type="text" name='rua' className='form-control' required onChange={handleState}/>
+                                <input type="text" name='rua' className='form-control' required onChange={handleState} value={rua}/>
                             </div>
 
                             <div className='col-6'>
@@ -182,13 +211,10 @@ const CadastroCliente = () => {
 
                             <div className='col-6'>
                                 <label htmlFor="bairro" className='form-label'>Bairro</label>
-                                <input type="text" name='bairro' className='form-control' required onChange={handleState}/>
+                                <input type="text" name='bairro' className='form-control' required onChange={handleState} value={bairro}/>
                             </div>
 
-                            <div className='col-6'>
-                                <label htmlFor="cep" className='form-label'>CEP</label>
-                                <input type="text" name='cep' className='form-control' required onChange={handleState}/>
-                            </div>
+                           
 
                             <div className='col-6'>
                                 <label htmlFor="complemento" className='form-label'>Complemento</label>

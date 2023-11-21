@@ -21,24 +21,31 @@ const ListagemCliente = () => {
 
         async function fetchData(){
             try{
-                const response = await axios.post('http://127.0.0.1:8000/api/nome',
+                const response = await axios.post('http://127.0.0.1:8000/api/procurarN',
                 {nome:pesquisa},
                 {
                     headers:{
                         "Accept":"application/json",
                         "content-Type":"aplication/json"
                     }
-                }).then(function(response){
-                    setClientes(response.data.data);
-                }).catch(function(error){
+                }).then(function (response) {
+                    console.log(response);
+                    if (response.data.status == true) {
+                        setClientes(response.data.data);
+                    }
+                    else {
+                        setClientes([]);
+                    }
+
+                }).catch(function (error) {
                     console.log(error);
                 });
 
-            }catch(error){
-                console.log(error);
-            }
+        } catch (error) {
+            console.log(error);
         }
-        fetchData();
+    }
+    fetchData();
     }
     useEffect(() =>{
         async function fetchData(){
@@ -129,6 +136,7 @@ const ListagemCliente = () => {
                                         <td>
                                             <Link to={"/editarClientes/"+ clientes.id}  className='btn btn-primary btn-sm'>Editar</Link>
                                             <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                            <Link to={"/recuperarSenhaCliente" } className='btn btn-warning btn-sm'>Recuperar Senha</Link>
                                         </td>
                                     </tr>
                                     ))}
