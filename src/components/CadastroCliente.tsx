@@ -3,6 +3,7 @@ import Header from './HeaderCliente';
 import Footer from './FooterCliente';
 import styles from '../App.module.css'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const CadastroCliente = () => {
 
@@ -138,13 +139,21 @@ const CadastroCliente = () => {
         });
         
     }
-
-    
-      
-
-
     return(
         <div>
+             <nav>
+                <ul className="nav nav-tabs">
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
+                        <ul className="dropdown-menu">
+                            <li><Link to={"/cadastroSevico"} className="dropdown-item" >Cadastro Serviço</Link></li>
+                            <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
+                           
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
            <Header />
            <main className={styles.main}>
             <div className='container'>

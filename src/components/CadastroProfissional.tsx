@@ -3,6 +3,7 @@ import Header from './HeaderProfissional';
 import Footer from './FooterProfissional';
 import styles from '../App.module.css'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const CadastroProfissional = () => {
 
@@ -149,6 +150,19 @@ const CadastroProfissional = () => {
 
     return(
         <div>
+             <nav>
+                <ul className="nav nav-tabs">
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
+                        <ul className="dropdown-menu">
+                            <li><Link to={"/cadastroCliente"} className="dropdown-item" >Cadastro Cliente</Link></li>
+                            <li><Link to={"/cadastroServico"} className="dropdown-item">Cadastro Serviço</Link></li>
+                           
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
            <Header />
            <main className={styles.main}>
             <div className='container'>
