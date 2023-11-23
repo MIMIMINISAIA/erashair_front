@@ -65,6 +65,28 @@ const ListagemAgenda = () => {
         fetchData();
     }
 
+    const excluir = (id: number)=>{
+        async function fetchData(){
+            try{
+                const response = await axios.delete('http://127.0.0.1:8000/api/excluirAgenda/'+ id);
+                if(response.data.status === true){
+
+                    const response = await axios.get('http://127.0.0.1:8000/api/retornarTodosAgenda/');
+                    setAgendas(response.data.data);
+                   
+                }
+                else{
+                    console.log(error);
+                }
+            }catch(error){
+                setError("ocorreu um erro");
+                console.log(error);
+            }
+
+        }
+        fetchData();
+    }
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -145,6 +167,7 @@ const ListagemAgenda = () => {
                                         {/* <th>ID</th> */}
                                         <th>profisional_id</th>
                                         <th>data_hora</th>
+                                        <th>Ações</th>
 
                                     </tr>
 
@@ -155,6 +178,9 @@ const ListagemAgenda = () => {
                                         <tr key={agendas.id}>
                                             <td>{agendas.profissional_id}</td>
                                             <td>{agendas.data_hora}</td>
+                                            <td>
+                                            <button onClick={()=> excluir(agendas.id)} className='btn btn-danger btn-sm'>Excluir</button>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

@@ -47,6 +47,28 @@ const ListagemServico = () => {
     }
     fetchData();
     }
+
+    const excluir = (id: number)=>{
+        async function fetchData(){
+            try{
+                const response = await axios.delete('http://127.0.0.1:8000/api/delete/'+ id);
+                if(response.data.status === true){
+
+                    const response = await axios.get('http://127.0.0.1:8000/api/servico/retornarTodos/');
+                    setServicos(response.data.data);
+                   
+                }
+                else{
+                    console.log(error);
+                }
+            }catch(error){
+                setError("ocorreu um erro");
+                console.log(error);
+            }
+
+        }
+        fetchData();
+    }
     useEffect(() =>{
         async function fetchData(){
             try{
@@ -112,7 +134,7 @@ const ListagemServico = () => {
                                         <td>{servicos.preco}</td>
                                         <td>
                                             <Link to={"/editarServico/"+ servicos.id}  className='btn btn-primary btn-sm'>Editar</Link>
-                                            <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                            <button onClick={()=> excluir(servicos.id)} className='btn btn-danger btn-sm'>Excluir</button>
                                         </td>
                                     </tr>
                                     ))}

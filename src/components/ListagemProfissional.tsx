@@ -50,6 +50,29 @@ const Listagemprofissionals = () => {
     }
     fetchData();
     }
+
+    const excluir = (id: number)=>{
+        async function fetchData(){
+            try{
+                const response = await axios.delete('http://127.0.0.1:8000/api/excluirProfissional/'+ id);
+                if(response.data.status === true){
+
+                    const response = await axios.get('http://127.0.0.1:8000/api/profissional/retornarTodos');
+                    setProfissionals(response.data.data);
+                }
+                else{
+                    console.log(error);
+                }
+            }catch(error){
+                setError("ocorreu um erro");
+                console.log(error);
+            }
+
+        }
+        fetchData();
+    }
+
+    
     useEffect(() =>{
         async function fetchData(){
             try{
@@ -141,7 +164,7 @@ const Listagemprofissionals = () => {
                                         {/* <td>{profissionals.senha}</td> */}
                                         <td>
                                         <Link to={"/editarProfissional/"+ profissionals.id}  className='btn btn-primary btn-sm'>Editar</Link>
-                                            <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                            <button onClick={()=> excluir(profissionals.id)} className='btn btn-danger btn-sm'>Excluir</button>
                                             <Link to={"/recuperarSenhaProfissional" } className='btn btn-warning btn-sm'>Recuperar Senha</Link>
                                         </td>
                                     </tr>
