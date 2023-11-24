@@ -141,13 +141,22 @@ const CadastroCliente = () => {
     }
     return(
         <div>
-             <nav>
+             <nav className=" bg-warning">
                 <ul className="nav nav-tabs">
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
+                    <li className="nav-item dropdown btn-warning">
+                        <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
                         <ul className="dropdown-menu">
-                            <li><Link to={"/cadastroSevico"} className="dropdown-item" >Cadastro Serviço</Link></li>
+                            <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
                             <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
+                           
+                        </ul>
+                    </li>
+                    <li className="nav-item dropdown btn-warning">
+                        <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Listagens</a>
+                        <ul className="dropdown-menu">
+                            <li><Link to={"/ListagemServico"} className="dropdown-item" >Listagem Serviço</Link></li>
+                            <li><Link to={"/ListagemCliente"} className="dropdown-item">Listagem Cliente</Link></li>
+                            <li><Link to={"/ListagemServico"} className="dropdown-item">Listagem Serviço</Link></li>
                            
                         </ul>
                     </li>

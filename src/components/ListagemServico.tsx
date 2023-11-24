@@ -3,6 +3,8 @@ import styles from "../App.module.css"
 import { CadastroServicoInterfaces } from '../interfaces/CadastroServicoInterfaces';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Header from './HeaderServico';
+import Swal from 'sweetalert2';
 
 const ListagemServico = () => {
 
@@ -48,27 +50,58 @@ const ListagemServico = () => {
     fetchData();
     }
 
+    
+
     const excluir = (id: number)=>{
         async function fetchData(){
-            try{
-                const response = await axios.delete('http://127.0.0.1:8000/api/delete/'+ id);
-                if(response.data.status === true){
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                  });
+                }
+              });
 
-                    const response = await axios.get('http://127.0.0.1:8000/api/servico/retornarTodos/');
-                    setServicos(response.data.data);
+
+
+
+            // try{
+              
+                
+            //     const response = await axios.delete('http://127.0.0.1:8000/api/delete/'+ id);
+                
+            //     if(response.data.status === true){
+
+            //         const response = await axios.get('http://127.0.0.1:8000/api/servico/retornarTodos/');
+            //         setServicos(response.data.data);
                    
-                }
-                else{
-                    console.log(error);
-                }
-            }catch(error){
-                setError("ocorreu um erro");
-                console.log(error);
-            }
+            //     }
+                
+            //     else{
+            //         console.log(error);
+            //     }
+            // }catch(error){
+            //     setError("ocorreu um erro");
+            //     console.log(error);
+            // }
+
+            
 
         }
-        fetchData();
+         fetchData();
     }
+
+  
     useEffect(() =>{
         async function fetchData(){
             try{
@@ -88,6 +121,33 @@ const ListagemServico = () => {
     }, []);
     return(
         <div>
+             <nav className=" bg-warning">
+                <ul className="nav nav-tabs">
+                    <li className="nav-item dropdown btn-warning">
+                        <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Listagens</a>
+                        <ul className="dropdown-menu">
+                            <li><Link to={"/ListagemProfissional"} className="dropdown-item" >Listagem Profissional</Link></li>
+                            <li><Link to={"/ListagemCliente"} className="dropdown-item">Listagem Cliente</Link></li>
+                           
+                        </ul>
+                    </li>
+                    
+                    <li className="nav-item dropdown btn-warning">
+                        <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
+                        <ul className="dropdown-menu">
+                            <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
+                            <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
+                            <li><Link to={"/CadastroCliente"} className="dropdown-item">Cadastro Cliente</Link></li>
+                           
+                        </ul>
+                    </li>
+
+               
+
+                </ul>
+               
+            </nav>
+            <Header/>
             <main className={styles.main}>
                 <div className='container'>
 
