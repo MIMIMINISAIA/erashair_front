@@ -166,6 +166,8 @@ const CadastroProfissional = () => {
                             <li><Link to={"/ListagemServico"} className="dropdown-item" >Listagem Serviço</Link></li>
                             <li><Link to={"/ListagemCliente"} className="dropdown-item">Listagem Cliente</Link></li>
                             <li><Link to={"/ListagemServico"} className="dropdown-item">Listagem Serviço</Link></li>
+                            <li><Link to={"/ListagemAgenda"} className="dropdown-item">Listagem Agenda</Link></li>
+
                            
                         </ul>
                     </li>

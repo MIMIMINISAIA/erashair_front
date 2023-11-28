@@ -131,6 +131,8 @@ const ListagemServico = () => {
                         <ul className="dropdown-menu">
                             <li><Link to={"/ListagemProfissional"} className="dropdown-item" >Listagem Profissional</Link></li>
                             <li><Link to={"/ListagemCliente"} className="dropdown-item">Listagem Cliente</Link></li>
+                            <li><Link to={"/ListagemAgenda"} className="dropdown-item">Listagem Agenda</Link></li>
+
 
                         </ul>
                     </li>
