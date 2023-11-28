@@ -4,7 +4,8 @@ import styles from "./Header.module.css"
 const Header = () => {
     return(
         <header className={styles.header}>
-            <h1>ERAS hair</h1>
+            <img src="" alt="" />
+            {/* <h1>ERAS hair</h1> */}
         </header>
 
     );

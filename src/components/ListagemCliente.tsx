@@ -4,6 +4,7 @@ import { CadastroClienteInterfaces } from '../interfaces/CadastroClienteInterfac
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from './HeaderServico';
+import Swal from 'sweetalert2';
 
 const ListagemCliente = () => {
 
@@ -49,27 +50,79 @@ const ListagemCliente = () => {
     fetchData();    
     }
 
-    const excluir = (id: number)=>{
-        async function fetchData(){
-            try{
-                const response = await axios.delete('http://127.0.0.1:8000/api/excluir/cliente/'+ id);
-                if(response.data.status === true){
+    const excluir = (id: number) => {
+        async function fetchData() {
+            try {
+                const response = await axios.delete('http://127.0.0.1:8000/api/excluir/cliente/' + id);
+
+                if (response.data.status === true) {
 
                     const response = await axios.get('http://127.0.0.1:8000/api/cliente/retornarTodos/');
                     setClientes(response.data.data);
-                   
                 }
-                else{
+
+                else {
                     console.log(error);
                 }
-            }catch(error){
+            } catch (error) {
                 setError("ocorreu um erro");
                 console.log(error);
             }
 
         }
         fetchData();
+
     }
+
+    const confirmacao = (id: number) => {
+        Swal.fire({
+            title: "Tem certeza que quer excluir?",
+            text: "Você não vai poder reverter isso depois!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sim, excluir"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                excluir(id);
+
+                Swal.fire({
+                    title: "Excluido com sucesso!",
+                    text: "seu cadastro foi excluido.",
+                    icon: "success"
+
+
+                });
+
+            }
+
+        });
+
+    }
+
+    // const excluir = (id: number)=>{
+    //     async function fetchData(){
+    //         try{
+    //             const response = await axios.delete('http://127.0.0.1:8000/api/excluir/cliente/'+ id);
+    //             if(response.data.status === true){
+
+    //                 const response = await axios.get('http://127.0.0.1:8000/api/cliente/retornarTodos/');
+    //                 setClientes(response.data.data);
+                   
+    //             }
+    //             else{
+    //                 console.log(error);
+    //             }
+    //         }catch(error){
+    //             setError("ocorreu um erro");
+    //             console.log(error);
+    //         }
+
+    //     }
+    //     fetchData();
+    // }
 
     useEffect(() =>{
         async function fetchData(){
@@ -186,7 +239,7 @@ const ListagemCliente = () => {
                                         {/* <td>{clientes.senha}</td> */}
                                         <td>
                                             <Link to={"/editarClientes/"+ clientes.id}  className='btn btn-primary btn-sm'>Editar</Link>
-                                            <button onClick={()=> excluir(clientes.id)} className='btn m-1 btn-danger btn-sm'>Excluir</button>
+                                            <button onClick={()=> confirmacao(clientes.id)} className='btn m-1 btn-danger btn-sm'>Excluir</button>
                                             <Link to={"/recuperarSenhaCliente" } className='btn btn-warning btn-sm'>Recuperar Senha</Link>
                                         </td>
                                     </tr>
