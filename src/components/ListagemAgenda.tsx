@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { CadastroProfissionalInterfaces } from '../interfaces/CadastroProfissionalInterfaces';
 import Header from './HeaderServico';
+import Swal from 'sweetalert2';
 
 const ListagemAgenda = () => {
 
@@ -86,6 +87,34 @@ const ListagemAgenda = () => {
 
         }
         fetchData();
+    }
+
+    const confirmacao = (id: number) => {
+        Swal.fire({
+            title: "Tem certeza que quer excluir?",
+            text: "Você não vai poder reverter isso depois!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sim, excluir"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                excluir(id);
+
+                Swal.fire({
+                    title: "Excluido com sucesso!",
+                    text: "seu cadastro foi excluido.",
+                    icon: "success"
+
+
+                });
+
+            }
+
+        });
+
     }
 
     useEffect(() => {
@@ -209,7 +238,7 @@ const ListagemAgenda = () => {
                                             <td>{agendas.profissional_id}</td>
                                             <td>{agendas.data_hora}</td>
                                             <td>
-                                            <button onClick={()=> excluir(agendas.id)} className='btn btn-danger btn-sm'>Excluir</button>
+                                            <button onClick={()=> confirmacao(agendas.id)} className='btn btn-danger btn-sm'>Excluir</button>
                                             </td>
                                         </tr>
                                     ))}
