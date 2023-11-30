@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from './HeaderServico';
 import Swal from 'sweetalert2';
+import Footer from './FooterServico';
 
 const ListagemCliente = () => {
 
@@ -149,6 +150,17 @@ const ListagemCliente = () => {
         <div>
             <nav className=" bg-warning">
                 <ul className="nav nav-tabs">
+
+                <li className="nav-item dropdown btn-warning">
+                        <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
+                        <ul className="dropdown-menu">
+                            <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
+                            <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
+                            <li><Link to={"/CadastroCliente"} className="dropdown-item">Cadastro Cliente</Link></li>
+                           
+                        </ul>
+                    </li>
+
                     <li className="nav-item dropdown btn-warning">
                         <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Listagens</a>
                         <ul className="dropdown-menu">
@@ -158,15 +170,7 @@ const ListagemCliente = () => {
                            
                         </ul>
                     </li>
-                    <li className="nav-item dropdown btn-warning">
-                        <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
-                        <ul className="dropdown-menu">
-                            <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
-                            <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
-                            <li><Link to={"/CadastroCliente"} className="dropdown-item">Cadastro Cliente</Link></li>
-                           
-                        </ul>
-                    </li>
+                 
 
                 </ul>
             </nav>
@@ -253,6 +257,7 @@ const ListagemCliente = () => {
                 </div>
 
             </main>
+            <Footer />
             
         </div>
     );

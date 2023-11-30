@@ -147,6 +147,17 @@ const Listagemprofissionals = () => {
         <div>
              <nav className=" bg-warning">
                 <ul className="nav nav-tabs">
+
+                <li className="nav-item dropdown btn-warning">
+                        <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
+                        <ul className="dropdown-menu">
+                            <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
+                            <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
+                            <li><Link to={"/CadastroCliente"} className="dropdown-item">Cadastro Cliente</Link></li>
+                           
+                        </ul>
+                    </li>
+
                     <li className="nav-item dropdown btn-warning">
                         <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Listagens</a>
                         <ul className="dropdown-menu">
@@ -156,15 +167,7 @@ const Listagemprofissionals = () => {
                            
                         </ul>
                     </li>
-                    <li className="nav-item dropdown btn-warning">
-                        <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
-                        <ul className="dropdown-menu">
-                            <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
-                            <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
-                            <li><Link to={"/CadastroCliente"} className="dropdown-item">Cadastro Cliente</Link></li>
-                           
-                        </ul>
-                    </li>
+                    
                     
 
                 </ul>
@@ -256,6 +259,7 @@ const Listagemprofissionals = () => {
                 </div>
 
             </main>
+            <Footer />
         </div>
     );
 }

@@ -6,7 +6,7 @@ const Footer = () =>{
         
         <footer className={styles.footer}>
             <p>
-                <span>Cadastro Cliente</span> @SENAI
+            <span>Mais informações entrar em contato conosco <br />(18)997819950 <br /> </span> @SENAI
             </p>
         </footer>
     );
