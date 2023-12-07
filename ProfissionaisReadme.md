@@ -1,4 +1,4 @@
-# Readme Cliente
+# Readme Profissional
 
 nesse projeto profissionais vão ter a liberdade de se cadastrar para poder prestar serviços, colocando seus horarios e seus serviços disponiveis para os clientes puderem encontralos.
 

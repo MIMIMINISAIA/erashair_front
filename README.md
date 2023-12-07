@@ -7,6 +7,7 @@ Projeto front do cabeleleiro ERAS, Um site de barbearia/cabelereiro feito para f
 1. [Readme Clientes](ClienteReadme.md)
 2. [Readme Profissionais](ProfissionaisReadme.md)
 3. [Readme Serviços](ServicoReadme.md)
+4. [Readme Agenda](AgendaReadme.md)
 
 ## Como iniciar este repositorio
 

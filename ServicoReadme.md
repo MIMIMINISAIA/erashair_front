@@ -1,4 +1,4 @@
-# Readme Cliente
+# Readme Serviço
 
 nesse projeto Os profissionais podem cadastrar os servilos que estaram disponiveis para os clientes.
 
@@ -15,5 +15,4 @@ nesse projeto Os profissionais podem cadastrar os servilos que estaram disponive
 1. Cadastrar
 2. Editar
 3. Excluir
-4. Recuperar senha
-5. Pesquisar
+4. Pesquisar
