@@ -24,7 +24,7 @@ const ListagemServico = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/nome',
+                const response = await axios.post('http://127.0.0.1:8000/api/servico/procurarNome',
                     { nome: pesquisa },
                     {
                         headers: {
@@ -56,7 +56,7 @@ const ListagemServico = () => {
     const excluir = (id: number) => {
         async function fetchData() {
             try {
-                const response = await axios.delete('http://127.0.0.1:8000/api/delete/' + id);
+                const response = await axios.delete('http://127.0.0.1:8000/api/servuico/delete/' + id);
 
                 if (response.data.status === true) {
 

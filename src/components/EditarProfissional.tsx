@@ -92,7 +92,7 @@ const EditarProfissional = () => {
                 setNumero(response.data.data.numero);
                 setBairro(response.data.data.bairro);
                 setCep(response.data.data.cep);
-                setComplemento(response.data.data.complememento);
+                setComplemento(response.data.data.complemento);
                 setSenha(response.data.data.senha);
                 setSalario(response.data.data.salario);
 
@@ -144,7 +144,7 @@ const EditarProfissional = () => {
         if (e.target.name === "cep") {
             setCep(e.target.value);
         }
-        if (e.target.name === "complememento") {
+        if (e.target.name === "complemento") {
             setComplemento(e.target.value);
         }
         if (e.target.name === "senha") {

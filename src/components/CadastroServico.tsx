@@ -38,7 +38,7 @@ const CadastroServico = () => {
 
         }
 
-        axios.post('http://127.0.0.1:8000/api/store', dados,
+        axios.post('http://127.0.0.1:8000/api/servico/store', dados,
             {
                 headers: {
                     "Accept": "application/json",

@@ -28,7 +28,7 @@ const EditarServico = () => {
             preco: preco,
         }
 
-        axios.put("http://127.0.0.1:8000/api/update/", dados,
+        axios.put("http://127.0.0.1:8000/api/servico/update", dados,
             {
                 headers: {
                     "Accept": "application/json",
@@ -56,7 +56,7 @@ const EditarServico = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/servicoPesquisarPor/" + parametro.id)
+                const response = await axios.get("http://127.0.0.1:8000/api/servico/pesquisarPor/" + parametro.id)
                 console.log(response)
                 setId(response.data.data.id);
                 setNome(response.data.data.nome);

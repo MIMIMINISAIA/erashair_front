@@ -1,3 +1,5 @@
+<img src="/public/5-removebg-preview.png">
+
 # Eras Hair front
 
 Projeto front do cabeleleiro ERAS, Um site de barbearia/cabelereiro feito para facilitar sua vida, não precisa de um estabelecimento em si para trabalhar, apenas se cadastrar e seus clientes vão até você. 
