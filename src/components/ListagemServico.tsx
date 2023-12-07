@@ -128,7 +128,7 @@ const ListagemServico = () => {
             <nav className=" bg-warning">
                 <ul className="nav nav-tabs">
 
-                <li className="nav-item dropdown btn-warning">
+                    <li className="nav-item dropdown btn-warning">
                         <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
                         <ul className="dropdown-menu">
                             <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
@@ -149,7 +149,7 @@ const ListagemServico = () => {
                         </ul>
                     </li>
 
-                   
+
 
 
 

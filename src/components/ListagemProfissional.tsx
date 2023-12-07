@@ -1,4 +1,4 @@
-import React, {Component, useState, ChangeEvent, FormEvent, useEffect}from 'react';
+import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import styles from "../App.module.css"
 import { CadastroProfissionalInterfaces } from '../interfaces/CadastroProfissionalInterfaces';
 import axios from 'axios';
@@ -14,42 +14,42 @@ const Listagemprofissionals = () => {
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
 
-    const hadleState =(e: ChangeEvent<HTMLInputElement>)=>{
-        if(e.target.name === "pesquisa"){
+    const hadleState = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.name === "pesquisa") {
             setPesquisa(e.target.value);
         }
     }
 
-    const buscar = (e:FormEvent)=>{
+    const buscar = (e: FormEvent) => {
         e.preventDefault();
 
-        async function fetchData(){
-            try{
-                const response = await axios.post('http://127.0.0.1:8000/api/procurarNProfissional',
-                {nome:pesquisa},
-                {
-                    headers:{
-                        "Accept":"application/json",
-                        "content-Type":"aplication/json"
-                    }
-                }).then(function (response) {
-                    console.log(response);
-                    if (response.data.status == true) {
-                        setProfissionals(response.data.data);
-                    }
-                    else {
-                        setProfissionals([]);
-                    }
+        async function fetchData() {
+            try {
+                const response = await axios.post('http://127.0.0.1:8000/api/profissional/procurarNome',
+                    { nome: pesquisa },
+                    {
+                        headers: {
+                            "Accept": "application/json",
+                            "content-Type": "aplication/json"
+                        }
+                    }).then(function (response) {
+                        console.log(response);
+                        if (response.data.status == true) {
+                            setProfissionals(response.data.data);
+                        }
+                        else {
+                            setProfissionals([]);
+                        }
 
-                }).catch(function (error) {
-                    console.log(error);
-                });
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
 
-        } catch (error) {
-            console.log(error);
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }
-    fetchData();
+        fetchData();
     }
 
     const excluir = (id: number) => {
@@ -125,15 +125,15 @@ const Listagemprofissionals = () => {
     //     fetchData();
     // }
 
-    
-    useEffect(() =>{
-        async function fetchData(){
-            try{
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
                 const response = await axios.get('http://127.0.0.1:8000/api/profissional/retornarTodos');
                 setProfissionals(response.data.data);
-                
 
-            }catch(error){
+
+            } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error);
 
@@ -143,18 +143,18 @@ const Listagemprofissionals = () => {
 
         fetchData();
     }, []);
-    return(
+    return (
         <div>
-             <nav className=" bg-warning">
+            <nav className=" bg-warning">
                 <ul className="nav nav-tabs">
 
-                <li className="nav-item dropdown btn-warning">
+                    <li className="nav-item dropdown btn-warning">
                         <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
                         <ul className="dropdown-menu">
                             <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
                             <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
                             <li><Link to={"/CadastroCliente"} className="dropdown-item">Cadastro Cliente</Link></li>
-                           
+
                         </ul>
                     </li>
 
@@ -164,38 +164,38 @@ const Listagemprofissionals = () => {
                             <li><Link to={"/ListagemServico"} className="dropdown-item" >Listagem Serviço</Link></li>
                             <li><Link to={"/ListagemCliente"} className="dropdown-item">Listagem Cliente</Link></li>
                             <li><Link to={"/ListagemAgenda"} className="dropdown-item">Listagem Agenda</Link></li>
-                           
+
                         </ul>
                     </li>
-                    
-                    
+
+
 
                 </ul>
             </nav>
-            <Header/>
+            <Header />
             <main className={styles.main}>
-           
+
                 <div className='container'>
 
                     <div className='col-md mb-3'>
                         <div className='card'>
                             <div className='card-body'>
                                 <h5 className='card-title'>Pesquisar</h5>
-                                <form onSubmit={buscar}className='row'>
+                                <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name='pesquisa' className='form-control' onChange={hadleState}/>
+                                        <input type="text" name='pesquisa' className='form-control' onChange={hadleState} />
                                     </div>
-                                    
+
                                     <div className='col-1'>
                                         <button type='submit'
-                                         className='btn btn-success'>Pesquisar</button>
-                                     </div>
+                                            className='btn btn-success'>Pesquisar</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
 
-                  
+
 
                     <div className='card'>
                         <div className='card-body'>
@@ -222,39 +222,39 @@ const Listagemprofissionals = () => {
                                         {/* <th>senha</th> */}
                                         <th>salario</th>
                                     </tr>
-                                    
-                                    
+
+
                                 </thead>
                                 <tbody>
-                                    {profissionals.map(profissionals =>(
-                                    <tr key={profissionals.id}>
-                                        {/* <td>{profissionals.id}</td> */}
-                                        <td>{profissionals.nome}</td>
-                                        <td>{profissionals.celular}</td>
-                                        <td>{profissionals.email}</td>
-                                        <td>{profissionals.cpf}</td>
-                                        <td>{profissionals.dataNascimento}</td>
-                                        <td>{profissionals.cidade}</td>
-                                        <td>{profissionals.estado}</td>
-                                        {/* <td>{profissionals.pais}</td> */}
-                                        {/* <td>{profissionals.rua}</td> */}
-                                        {/* <td>{profissionals.numero}</td> */}
-                                        {/* <td>{profissionals.bairro}</td> */}
-                                        {/* <td>{profissionals.cep}</td> */}
-                                        {/* <td>{profissionals.complemento}</td> */}
-                                        {/* <td>{profissionals.senha}</td> */}
-                                        <td>
-                                        <Link to={"/editarProfissional/"+ profissionals.id}  className='btn btn-primary btn-sm'>Editar</Link>
-                                            <button onClick={()=> confirmacao(profissionals.id)} className='btn btn-danger btn-sm'>Excluir</button>
-                                            <Link to={"/recuperarSenhaProfissional" } className='btn btn-warning btn-sm'>Recuperar Senha</Link>
-                                        </td>
-                                    </tr>
+                                    {profissionals.map(profissionals => (
+                                        <tr key={profissionals.id}>
+                                            {/* <td>{profissionals.id}</td> */}
+                                            <td>{profissionals.nome}</td>
+                                            <td>{profissionals.celular}</td>
+                                            <td>{profissionals.email}</td>
+                                            <td>{profissionals.cpf}</td>
+                                            <td>{profissionals.dataNascimento}</td>
+                                            <td>{profissionals.cidade}</td>
+                                            <td>{profissionals.estado}</td>
+                                            {/* <td>{profissionals.pais}</td> */}
+                                            {/* <td>{profissionals.rua}</td> */}
+                                            {/* <td>{profissionals.numero}</td> */}
+                                            {/* <td>{profissionals.bairro}</td> */}
+                                            {/* <td>{profissionals.cep}</td> */}
+                                            {/* <td>{profissionals.complemento}</td> */}
+                                            {/* <td>{profissionals.senha}</td> */}
+                                            <td>
+                                                <Link to={"/editarProfissional/" + profissionals.id} className='btn btn-primary btn-sm'>Editar</Link>
+                                                <button onClick={() => confirmacao(profissionals.id)} className='btn btn-danger btn-sm'>Excluir</button>
+                                                <Link to={"/recuperarSenhaProfissional"} className='btn btn-warning btn-sm'>Recuperar Senha</Link>
+                                            </td>
+                                        </tr>
                                     ))}
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    
+
 
                 </div>
 

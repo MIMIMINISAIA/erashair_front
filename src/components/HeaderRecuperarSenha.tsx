@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Header.module.css"
 const Header = () => {
-    return(
+    return (
         <header className={styles.header}>
             <h1>Recuperar Senha</h1>
         </header>

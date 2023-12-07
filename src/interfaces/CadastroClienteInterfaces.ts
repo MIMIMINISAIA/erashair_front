@@ -14,5 +14,5 @@ export interface CadastroClienteInterfaces {
     cep: string;
     complemento: string;
     senha: string;
-}    
+}
 

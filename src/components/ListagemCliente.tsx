@@ -1,4 +1,4 @@
-import React, {Component, useState, ChangeEvent, FormEvent, useEffect}from 'react';
+import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import styles from "../App.module.css"
 import { CadastroClienteInterfaces } from '../interfaces/CadastroClienteInterfaces';
 import axios from 'axios';
@@ -13,42 +13,42 @@ const ListagemCliente = () => {
     const [pesquisa, setPesquisa] = useState<string>('');
     const [error, setError] = useState("");
 
-    const hadleState =(e: ChangeEvent<HTMLInputElement>)=>{
-        if(e.target.name === "pesquisa"){
+    const hadleState = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.name === "pesquisa") {
             setPesquisa(e.target.value);
         }
     }
 
-    const buscar = (e:FormEvent)=>{
+    const buscar = (e: FormEvent) => {
         e.preventDefault();
 
-        async function fetchData(){
-            try{
-                const response = await axios.post('http://127.0.0.1:8000/api/procurarN',
-                {nome:pesquisa},
-                {
-                    headers:{
-                        "Accept":"application/json",
-                        "content-Type":"aplication/json"
-                    }
-                }).then(function (response) {
-                    console.log(response);
-                    if (response.data.status == true) {
-                        setClientes(response.data.data);
-                    }
-                    else {
-                        setClientes([]);
-                    }
+        async function fetchData() {
+            try {
+                const response = await axios.post('http://127.0.0.1:8000/api/cliente/procurarNome',
+                    { nome: pesquisa },
+                    {
+                        headers: {
+                            "Accept": "application/json",
+                            "content-Type": "aplication/json"
+                        }
+                    }).then(function (response) {
+                        console.log(response);
+                        if (response.data.status == true) {
+                            setClientes(response.data.data);
+                        }
+                        else {
+                            setClientes([]);
+                        }
 
-                }).catch(function (error) {
-                    console.log(error);
-                });
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
 
-        } catch (error) {
-            console.log(error);
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }
-    fetchData();    
+        fetchData();
     }
 
     const excluir = (id: number) => {
@@ -58,7 +58,7 @@ const ListagemCliente = () => {
 
                 if (response.data.status === true) {
 
-                    const response = await axios.get('http://127.0.0.1:8000/api/cliente/retornarTodos/');
+                    const response = await axios.get('http://127.0.0.1:8000/api/cliente/retornarTodos');
                     setClientes(response.data.data);
                 }
 
@@ -111,7 +111,7 @@ const ListagemCliente = () => {
 
     //                 const response = await axios.get('http://127.0.0.1:8000/api/cliente/retornarTodos/');
     //                 setClientes(response.data.data);
-                   
+
     //             }
     //             else{
     //                 console.log(error);
@@ -125,17 +125,17 @@ const ListagemCliente = () => {
     //     fetchData();
     // }
 
-    useEffect(() =>{
-        async function fetchData(){
-            try{
-                const response = await axios.get('http://127.0.0.1:8000/api/cliente/retornarTodos/');
-                if(response.data.status === true){
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/api/cliente/retornarTodos');
+                if (response.data.status === true) {
 
                     setClientes(response.data.data);
-                    
+
                 }
 
-            }catch(error){
+            } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error);
 
@@ -146,18 +146,18 @@ const ListagemCliente = () => {
         fetchData();
     }, []);
 
-    return(
+    return (
         <div>
             <nav className=" bg-warning">
                 <ul className="nav nav-tabs">
 
-                <li className="nav-item dropdown btn-warning">
+                    <li className="nav-item dropdown btn-warning">
                         <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
                         <ul className="dropdown-menu">
                             <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
                             <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
                             <li><Link to={"/CadastroCliente"} className="dropdown-item">Cadastro Cliente</Link></li>
-                           
+
                         </ul>
                     </li>
 
@@ -167,14 +167,14 @@ const ListagemCliente = () => {
                             <li><Link to={"/ListagemServico"} className="dropdown-item" >Listagem Serviço</Link></li>
                             <li><Link to={"/ListagemProfissional"} className="dropdown-item">Listagem Profissional</Link></li>
                             <li><Link to={"/ListagemAgenda"} className="dropdown-item">Listagem Agenda</Link></li>
-                           
+
                         </ul>
                     </li>
-                 
+
 
                 </ul>
             </nav>
-            <Header/>
+            <Header />
             <main className={styles.main}>
                 <div className='container'>
 
@@ -182,15 +182,15 @@ const ListagemCliente = () => {
                         <div className='card'>
                             <div className='card-body'>
                                 <h5 className='card-title'>Pesquisar</h5>
-                                <form onSubmit={buscar}className='row'>
+                                <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name='pesquisa' className='form-control' onChange={hadleState}/>
+                                        <input type="text" name='pesquisa' className='form-control' onChange={hadleState} />
                                     </div>
-                                    
+
                                     <div className='col-1'>
                                         <button type='submit'
-                                         className='btn btn-success'>Pesquisar</button>
-                                     </div>
+                                            className='btn btn-success'>Pesquisar</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -221,33 +221,33 @@ const ListagemCliente = () => {
                                         {/* <th>senha</th> */}
                                         <th>Ações</th>
                                     </tr>
-                                    
-                                    
+
+
                                 </thead>
                                 <tbody>
-                                    {clientes.map(clientes =>(
-                                    <tr key={clientes.id}>
-                                        {/* <td>{clientes.id}</td> */}
-                                        <td>{clientes.nome}</td>
-                                        <td>{clientes.celular}</td>
-                                        <td>{clientes.email}</td>
-                                        <td>{clientes.cpf}</td>
-                                        <td>{clientes.dataNascimento}</td>
-                                        <td>{clientes.cidade}</td>
-                                        <td>{clientes.estado}</td>
-                                        {/* <td>{clientes.pais}</td> */}
-                                        {/* <td>{clientes.rua}</td> */}
-                                        {/* <td>{clientes.numero}</td> */}
-                                        {/* <td>{clientes.bairro}</td> */}
-                                        {/* <td>{clientes.cep}</td> */}
-                                        {/* <td>{clientes.complemento}</td> */}
-                                        {/* <td>{clientes.senha}</td> */}
-                                        <td>
-                                            <Link to={"/editarClientes/"+ clientes.id}  className='btn btn-primary btn-sm'>Editar</Link>
-                                            <button onClick={()=> confirmacao(clientes.id)} className='btn m-1 btn-danger btn-sm'>Excluir</button>
-                                            <Link to={"/recuperarSenhaCliente" } className='btn btn-warning btn-sm'>Recuperar Senha</Link>
-                                        </td>
-                                    </tr>
+                                    {clientes.map(clientes => (
+                                        <tr key={clientes.id}>
+                                            {/* <td>{clientes.id}</td> */}
+                                            <td>{clientes.nome}</td>
+                                            <td>{clientes.celular}</td>
+                                            <td>{clientes.email}</td>
+                                            <td>{clientes.cpf}</td>
+                                            <td>{clientes.dataNascimento}</td>
+                                            <td>{clientes.cidade}</td>
+                                            <td>{clientes.estado}</td>
+                                            {/* <td>{clientes.pais}</td> */}
+                                            {/* <td>{clientes.rua}</td> */}
+                                            {/* <td>{clientes.numero}</td> */}
+                                            {/* <td>{clientes.bairro}</td> */}
+                                            {/* <td>{clientes.cep}</td> */}
+                                            {/* <td>{clientes.complemento}</td> */}
+                                            {/* <td>{clientes.senha}</td> */}
+                                            <td>
+                                                <Link to={"/editarClientes/" + clientes.id} className='btn btn-primary btn-sm'>Editar</Link>
+                                                <button onClick={() => confirmacao(clientes.id)} className='btn m-1 btn-danger btn-sm'>Excluir</button>
+                                                <Link to={"/recuperarSenhaCliente"} className='btn btn-warning btn-sm'>Recuperar Senha</Link>
+                                            </td>
+                                        </tr>
                                     ))}
                                 </tbody>
                             </table>
@@ -258,7 +258,7 @@ const ListagemCliente = () => {
 
             </main>
             <Footer />
-            
+
         </div>
     );
 }

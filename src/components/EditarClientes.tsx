@@ -1,4 +1,4 @@
-import React, {Component, useState, ChangeEvent, FormEvent, useEffect} from "react";
+import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from "react";
 
 import styles from "../App.module.css"
 import Header from "./HeaderCliente";
@@ -7,9 +7,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 
-const EditarClientes = () =>{
+const EditarClientes = () => {
 
-    const[id, setId] = useState<string>("");
+    const [id, setId] = useState<string>("");
     const [nome, setNome] = useState<string>("");
     const [celular, setCelular] = useState<string>("");
     const [email, setEmail] = useState<string>("");
@@ -48,35 +48,35 @@ const EditarClientes = () =>{
             senha: senha,
         }
 
-        axios.put("http://127.0.0.1:8000/api/atualizar", dados,
-        {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type":"application/json"
-            }
-        }).then(function(response){
-            if(response.data.success == false){
-                console.log("Error");
-                console.log(response.data.error);
-                alert("erro ao cadastrar, olhar o console")
-            }
-            else{
-                window.location.href = "/listagemCliente";
-            }
-            
-        }).catch(function(error){
-            console.log(error);
-        });
+        axios.put("http://127.0.0.1:8000/api/cliente/atualizar", dados,
+            {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            }).then(function (response) {
+                if (response.data.success == false) {
+                    console.log("Error");
+                    console.log(response.data.error);
+                    alert("erro ao cadastrar, olhar o console")
+                }
+                else {
+                    window.location.href = "/listagemCliente";
+                }
+
+            }).catch(function (error) {
+                console.log(error);
+            });
 
 
 
 
     }
 
-    useEffect(()=>{
-        async function fetchData(){
-            try{
-                const response = await axios.get("http://127.0.0.1:8000/api/pesquisarPor/" + parametro.id)
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get("http://127.0.0.1:8000/api/cliente/pesquisarPor/" + parametro.id)
                 console.log(response)
                 setId(response.data.data.id);
                 setNome(response.data.data.nome);
@@ -94,7 +94,7 @@ const EditarClientes = () =>{
                 setComplemento(response.data.data.complememento);
                 setSenha(response.data.data.senha);
 
-            }catch(error){
+            } catch (error) {
                 console.log("erro ao buscar dados da api");
                 console.log(error);
 
@@ -105,47 +105,47 @@ const EditarClientes = () =>{
     }, []);
 
 
-    const handleState = (e: ChangeEvent<HTMLInputElement>)=>{
-        if(e.target.name === "nome"){
+    const handleState = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.name === "nome") {
             setNome(e.target.value);
         }
-        if(e.target.name === "celular"){
+        if (e.target.name === "celular") {
             setCelular(e.target.value);
         }
-        if(e.target.name === "email"){
+        if (e.target.name === "email") {
             setEmail(e.target.value);
         }
-        if(e.target.name === "cpf"){
+        if (e.target.name === "cpf") {
             setCpf(e.target.value);
         }
-        if(e.target.name === "dataNascimento"){
+        if (e.target.name === "dataNascimento") {
             setDataNascimento(e.target.value);
         }
-        if(e.target.name === "cidade"){
+        if (e.target.name === "cidade") {
             setCidade(e.target.value);
         }
-        if(e.target.name === "estado"){
+        if (e.target.name === "estado") {
             setEstado(e.target.value);
         }
-        if(e.target.name === "pais"){
+        if (e.target.name === "pais") {
             setPais(e.target.value);
         }
-        if(e.target.name === "rua"){
+        if (e.target.name === "rua") {
             setRua(e.target.value);
         }
-        if(e.target.name === "numero"){
+        if (e.target.name === "numero") {
             setNumero(e.target.value);
         }
-        if(e.target.name === "bairro"){
+        if (e.target.name === "bairro") {
             setBairro(e.target.value);
         }
-        if(e.target.name === "cep"){
+        if (e.target.name === "cep") {
             setCep(e.target.value);
         }
-        if(e.target.name === "complememento"){
+        if (e.target.name === "complememento") {
             setComplemento(e.target.value);
         }
-        if(e.target.name === "senha"){
+        if (e.target.name === "senha") {
             setSenha(e.target.value);
         }
 
@@ -153,104 +153,104 @@ const EditarClientes = () =>{
     }
     return (
         <div>
-        <Header />
-           <main className={styles.main}>
-            <div className='container'>
-                <div className='card'>
-                    <div className='card-body'>
-                        <h5 className='card-title'>Editar Cliente</h5>
-                        <form onSubmit={Atualizar} className='row g-3'>
+            <Header />
+            <main className={styles.main}>
+                <div className='container'>
+                    <div className='card'>
+                        <div className='card-body'>
+                            <h5 className='card-title'>Editar Cliente</h5>
+                            <form onSubmit={Atualizar} className='row g-3'>
 
-                        <div className='col-6'>
-                                <label htmlFor="nome" className='form-label'>Nome</label>
-                                <input type="text" name='nome' className='form-control' required onChange={handleState} value={nome} />
-                            </div>
+                                <div className='col-6'>
+                                    <label htmlFor="nome" className='form-label'>Nome</label>
+                                    <input type="text" name='nome' className='form-control' required onChange={handleState} value={nome} />
+                                </div>
 
-                            <div className='col-6'>
-                                <label htmlFor="celular" className='form-label'>Celular</label>
-                                <input type="text" name='celular' className='form-control' required onChange={handleState} value={celular}/>
-                            </div>
-
-
-                            <div className='col-6'>
-                                <label htmlFor="email" className='form-label'>Email</label>
-                                <input type="text" name='email' className='form-control' required onChange={handleState} value={email}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="cpf" className='form-label'>CPF</label>
-                                <input type="text" name='cpf' className='form-control' required onChange={handleState} value={cpf}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="dataNascimento" className='form-label'>Data Nascimento</label>
-                                <input type="date" name='dataNascimento' className='form-control' required onChange={handleState}value={dataNascimento}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="cidade" className='form-label'>Cidade</label>
-                                <input type="text" name='cidade' className='form-control' required onChange={handleState} value={cidade}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="estado" className='form-label'>Estado</label>
-                                <input type="text" name='estado' className='form-control' required onChange={handleState} value={estado}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="pais" className='form-label'>Pais</label>
-                                <input type="text" name='pais' className='form-control' required onChange={handleState} value={pais}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="rua" className='form-label'>Rua</label>
-                                <input type="text" name='rua' className='form-control' required onChange={handleState} value={rua}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="numero" className='form-label'>Numero</label>
-                                <input type="text" name='numero' className='form-control' required onChange={handleState} value={numero}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="bairro" className='form-label'>Bairro</label>
-                                <input type="text" name='bairro' className='form-control' required onChange={handleState} value={bairro}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="cep" className='form-label'>CEP</label>
-                                <input type="text" name='cep' className='form-control' required onChange={handleState} value={cep}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="complemento" className='form-label'>Complemento</label>
-                                <input type="text" name='complememnto' className='form-control' required onChange={handleState} value={complemento}/>
-                            </div>
-
-                            <div className='col-6'>
-                                <label htmlFor="inputPassword5" className='form-label'>Senha</label>
-                                <input type="password" name='senha' id='inputPassword5' className='form-control' aria-describedby="passwordHelpBlock" required onChange={handleState} value={senha}/>
-                            </div >
+                                <div className='col-6'>
+                                    <label htmlFor="celular" className='form-label'>Celular</label>
+                                    <input type="text" name='celular' className='form-control' required onChange={handleState} value={celular} />
+                                </div>
 
 
+                                <div className='col-6'>
+                                    <label htmlFor="email" className='form-label'>Email</label>
+                                    <input type="text" name='email' className='form-control' required onChange={handleState} value={email} />
+                                </div>
 
-                             <div className='col-12'>
+                                <div className='col-6'>
+                                    <label htmlFor="cpf" className='form-label'>CPF</label>
+                                    <input type="text" name='cpf' className='form-control' required onChange={handleState} value={cpf} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="dataNascimento" className='form-label'>Data Nascimento</label>
+                                    <input type="date" name='dataNascimento' className='form-control' required onChange={handleState} value={dataNascimento} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="cidade" className='form-label'>Cidade</label>
+                                    <input type="text" name='cidade' className='form-control' required onChange={handleState} value={cidade} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="estado" className='form-label'>Estado</label>
+                                    <input type="text" name='estado' className='form-control' required onChange={handleState} value={estado} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="pais" className='form-label'>Pais</label>
+                                    <input type="text" name='pais' className='form-control' required onChange={handleState} value={pais} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="rua" className='form-label'>Rua</label>
+                                    <input type="text" name='rua' className='form-control' required onChange={handleState} value={rua} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="numero" className='form-label'>Numero</label>
+                                    <input type="text" name='numero' className='form-control' required onChange={handleState} value={numero} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="bairro" className='form-label'>Bairro</label>
+                                    <input type="text" name='bairro' className='form-control' required onChange={handleState} value={bairro} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="cep" className='form-label'>CEP</label>
+                                    <input type="text" name='cep' className='form-control' required onChange={handleState} value={cep} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="complemento" className='form-label'>Complemento</label>
+                                    <input type="text" name='complememnto' className='form-control' required onChange={handleState} value={complemento} />
+                                </div>
+
+                                <div className='col-6'>
+                                    <label htmlFor="inputPassword5" className='form-label'>Senha</label>
+                                    <input type="password" name='senha' id='inputPassword5' className='form-control' aria-describedby="passwordHelpBlock" required onChange={handleState} value={senha} />
+                                </div >
+
+
+
+                                <div className='col-12'>
                                     <button type='submit' className=' btn btn-success btn-sm'>Atualizar</button>
                                 </div>
 
 
 
-                        </form>
+                            </form>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+            </main>
 
-           </main>
-
-           <Footer/>
+            <Footer />
         </div>
     )
 }

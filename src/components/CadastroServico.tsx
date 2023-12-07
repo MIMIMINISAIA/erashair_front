@@ -60,7 +60,7 @@ const CadastroServico = () => {
                         setPrecoErro(response.data.error.preco[0]);
                     }
 
-                    }
+                }
                 // if (response.data.success == false) {
                 //     console.log("Error");
                 //     console.log(response.data.error);
@@ -103,7 +103,7 @@ const CadastroServico = () => {
                         <ul className="dropdown-menu">
                             <li><Link to={"/cadastroCliente"} className="dropdown-item" >Cadastro Cliente</Link></li>
                             <li><Link to={"/cadastroProfissional"} className="dropdown-item">Cadastro Profissional</Link></li>
-                           
+
                         </ul>
                     </li>
                     <li className="nav-item dropdown btn-warning">
@@ -114,7 +114,7 @@ const CadastroServico = () => {
                             <li><Link to={"/ListagemServico"} className="dropdown-item">Listagem Serviço</Link></li>
                             <li><Link to={"/ListagemAgenda"} className="dropdown-item">Listagem Agenda</Link></li>
 
-                           
+
                         </ul>
                     </li>
 

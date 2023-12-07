@@ -27,7 +27,7 @@ const ListagemAgenda = () => {
     const hadleStateSelect = (e: ChangeEvent<HTMLSelectElement>) => {
         //console.log(e.target)
         //if (e.target.name === "selectProfissional") {
-            setProfissional(e.target.value);
+        setProfissional(e.target.value);
         //}
     }
 
@@ -68,20 +68,20 @@ const ListagemAgenda = () => {
         fetchData();
     }
 
-    const excluir = (id: number)=>{
-        async function fetchData(){
-            try{
-                const response = await axios.delete('http://127.0.0.1:8000/api/excluirAgenda/'+ id);
-                if(response.data.status === true){
+    const excluir = (id: number) => {
+        async function fetchData() {
+            try {
+                const response = await axios.delete('http://127.0.0.1:8000/api/excluirAgenda/' + id);
+                if (response.data.status === true) {
 
                     const response = await axios.get('http://127.0.0.1:8000/api/retornarTodosAgenda/');
                     setAgendas(response.data.data);
-                   
+
                 }
-                else{
+                else {
                     console.log(error);
                 }
-            }catch(error){
+            } catch (error) {
                 setError("ocorreu um erro");
                 console.log(error);
             }
@@ -156,10 +156,10 @@ const ListagemAgenda = () => {
 
     return (
         <div>
-             <nav className=" bg-warning">
+            <nav className=" bg-warning">
                 <ul className="nav nav-tabs">
 
-                <li className="nav-item dropdown btn-warning">
+                    <li className="nav-item dropdown btn-warning">
                         <a className="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
                         <ul className="dropdown-menu">
                             <li><Link to={"/CadastroServico"} className="dropdown-item" >Cadastro Serviço</Link></li>
@@ -182,7 +182,7 @@ const ListagemAgenda = () => {
                         </ul>
                     </li>
 
-                    
+
 
 
                 </ul>
@@ -243,7 +243,7 @@ const ListagemAgenda = () => {
                                             <td>{agendas.profissional_id}</td>
                                             <td>{agendas.data_hora}</td>
                                             <td>
-                                            <button onClick={()=> confirmacao(agendas.id)} className='btn btn-danger btn-sm'>Excluir</button>
+                                                <button onClick={() => confirmacao(agendas.id)} className='btn btn-danger btn-sm'>Excluir</button>
                                             </td>
                                         </tr>
                                     ))}
