@@ -1,6 +1,10 @@
 # Eras Hair front
 
-Projeto front do cabeleleiro ERAS
+Projeto front do cabeleleiro ERAS, Um site de barbearia/cabelereiro feito para facilitar sua vida, não precisa de um estabelecimento em si para trabalhar, apenas se cadastrar e seus clientes vão até você. 
+
+## Readmes das funções
+
+1. [Clientes](ClienteReadme.md)
 
 ## Como iniciar este repositorio
 
@@ -16,11 +20,11 @@ cd erashair_front
 ```
 npm install
 ```
-4. Abrindo
+4. Abrindo o projeto
 ```
 code .
 ```
-5. startar
+5. startar o projeto
 ```
 npm start
 ```
